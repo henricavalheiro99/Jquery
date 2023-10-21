@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio da moeda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <label>Digite o valor:</label>
+    <input placeholder="Ex: 100">
+    
+    <br>
+
+    <label>Escolha uma moeda:</label>
+    <select name="" id="selectUm">
+        <option>Select</option>
+        <option>Euro</option>
+        <option>Real</option>
+        <option>Dólar</option>
+        <option>Peso(Arg)</option>
+    </select>
+
+    <br>
+
+    <label>Escolha uma conversão:</label>
+    <select name="" id="selectDois">
+        <option>Select</option>
+        <option>Euro</option>
+        <option>Real</option>
+        <option>Dólar</option>
+        <option>Peso(Arg)</option>
+    </select>
+
+    <br>
+
+    <button>Coverter</button>
+
+    <br>
+
+    <h2></h2>
+
+    <style>
+        *{
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        select, input, button{
+            margin-bottom: 10px;
+        }
+
+        label{
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        select, input{
+            height: 30px;
+            line-height: 28px;
+            padding: 0 1rem;
+            padding-left: 2.5rem;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            outline: none;
+            background-color: #f3f3f4;
+            color: #0d0c22;
+            transition: .3s ease;
+            cursor: pointer;
+            margin-left: 4px;
+        }
+
+        select:hover, select:focus, input:hover, input:focus{
+            outline: none;
+            border-color: rgba(76, 147, 234, 0.4);
+            background-color: #fff;
+            box-shadow: 0 0 0 4px rgba(86, 114, 253, 0.1);
+        }
+
+        button{
+            background-color: rgb(188, 188, 255);
+            border-radius: 20px;
+            border: none;
+            transition: 0.8s;
+            padding: 7px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover{
+            transition: 0.8s;
+            transform: scale(1.1);
+            background-color: rgb(124, 124, 254);
+            font-weight: bold;
+        }
+
+        button:active{
+            transform: translate(0em, 0.5em);
+        }
+
+        h2{
+            font-size: 18px;
+        }
+    </style>
+
+    <script>
+        $("select").on("click", function(){
+            if ($(this).find(":first-child").val() == "Select"){
+                $(this).find(":first-child").remove()
+            }
+        })
+
+        $("button").on("click", function(){
+            var selectUm = $("#selectUm").val()
+            var selectDois = $("#selectDois").val()
+            var valorDigitado = $("input").val()
+            var conversao = 0
+            
+            if (selectUm != selectDois){
+                if (selectUm == "Euro" && selectDois == "Real"){
+                    conversao = valorDigitado * 5.36
+                }
+
+                else if (selectUm == "Euro" && selectDois == "Dólar"){
+                    conversao = valorDigitado * 1.06
+                }
+
+                else if (selectUm == "Euro" && selectDois == "Peso(Arg)"){
+                    conversao = valorDigitado * 370.76
+                }
+
+                if (selectUm == "Real" && selectDois == "Euro"){
+                    conversao = valorDigitado * 0.19
+                }
+
+                else if (selectUm == "Real" && selectDois == "Dólar"){
+                    conversao = valorDigitado * 0.20
+                }
+
+                else if (selectUm == "Real" && selectDois == "Peso(Arg)"){
+                    conversao = valorDigitado * 69.10
+                }
+
+                if (selectUm == "Dólar" && selectDois == "Real"){
+                    conversao = valorDigitado * 5.06
+                }
+
+                else if (selectUm == "Dólar" && selectDois == "Euro"){
+                    conversao = valorDigitado * 0.94
+                }
+
+                else if (selectUm == "Dólar" && selectDois == "Peso(Arg)"){
+                    conversao = valorDigitado * 349.34
+                }
+
+                if (selectUm == "Peso(Arg)" && selectDois == "Real"){
+                    conversao = valorDigitado * 0.014
+                }
+
+                else if (selectUm == "Peso(Arg)" && selectDois == "Dólar"){
+                    conversao = valorDigitado * 0.0029
+                }
+
+                else if (selectUm == "Peso(Arg)" && selectDois == "Euro"){
+                    conversao = valorDigitado * 0.0027
+                }
+
+            } else if (selectUm == selectDois) {
+                conversao = valorDigitado
+            }
+
+            $("h2").html("O valor em " + selectDois + " é: " + Number(conversao).toFixed(2))
+        })
+    </script>
+
+    <!-- 1 euro - 5,36 reais / 1,06 dolar / 370,46 peso-->
+    <!-- 1 real - 0,19 euros / 0,20 dolar / 69,10 peso -->
+    <!-- 1 dolar - 5,06 reais / 0,94 euros / 349,34 peso  -->
+    <!-- 1 peso argentino - 0,014 reais / 0,0029 dolar / 0,0027 euro -->
+
+</body>
+</html>

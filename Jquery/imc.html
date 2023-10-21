@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Biblioteca JS que permite os códigos JS funcionarem independente do navegador -->
+    <label>Digite seu peso: </label>
+    <input id="peso">
+
+    <br>
+
+    <label>Digite sua altura:</label>
+    <input id="altura">
+
+    <br>
+
+    <button id="calcular">Calcular</button>
+
+    <br>
+
+    <h2 id="resultado"></h2>
+
+    <script>
+        $("#calcular").on("click", function(){
+            var peso = parseFloat($("#peso").val())
+            var altura = parseFloat($("#altura").val())
+            var imc = peso / (altura*altura)
+            $("#resultado").html("O valor do IMC é: " + imc.toFixed(2))
+        })
+    </script>
+
+    <style>
+        #peso, #altura{
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 13px;
+            background-color: #ebebeb;
+            box-shadow: 3px 3px 0px 0px #c5c5c5;
+            width: 200px;
+            height: 30px;
+        }
+
+        #peso:hover, #altura:hover{
+            
+        }
+
+
+        label {
+            font-size: 20px;
+            color: black;
+        }
+    </style>
+</body>
+</html>
